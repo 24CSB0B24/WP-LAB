@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Calculator</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #ffffff;
+            --btn-bg: #1f1f1f;
+            --btn-hover: #333;
+            --border-color: #444;
+            --accent-color: #ff9800;
+            --calculator-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            margin: 0;
+        }
+
+        .calculator {
+            background: var(--calculator-bg);
+            padding: 10px 20px 20px 20px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+            width: 350px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 2px solid var(--border-color);
+        }
+
+        #display {
+            width: 100%;
+            padding: 20px;
+            font-size: 2rem;
+            text-align: right;
+            background: var(--calculator-bg);
+            color: var(--text-color);
+            border: 2px solid var(--accent-color);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            outline: none;
+            box-sizing: border-box;
+            height: 60px;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        button {
+            padding: 25px;
+            font-size: 1.5rem;
+            background: var(--btn-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            border-radius: 10px;
+            transition: background 0.3s ease, transform 0.1s;
+        }
+
+        button:hover {
+            background: var(--btn-hover);
+            transform: scale(1.05);
+        }
+
+        .zero {
+            grid-column: span 2;
+        }
+
+        .equal {
+            grid-row: span 2;
+            background: var(--accent-color);
+            color: #000;
+        }
+
+        .equal:hover {
+            background: #e68900;
+        }
+
+        .clear {
+            grid-column: span 2;
+            background: var(--accent-color);
+            color: #000;
+        }
+
+        .clear:hover {
+            background: #e68900;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h2>Calculator</h2>
+        <input type="text" id="display" disabled>
+        <div class="buttons">
+            <button class="clear" onclick="clearDisplay()">C</button>
+            <button onclick="appendValue('/')">/</button>
+            <button onclick="appendValue('*')">*</button>
+            <button onclick="appendValue('7')">7</button>
+            <button onclick="appendValue('8')">8</button>
+            <button onclick="appendValue('9')">9</button>
+            <button onclick="appendValue('+')">+</button>
+            <button onclick="appendValue('4')">4</button>
+            <button onclick="appendValue('5')">5</button>
+            <button onclick="appendValue('6')">6</button>
+            <button onclick="appendValue('-')">-</button>
+            <button onclick="appendValue('1')">1</button>
+            <button onclick="appendValue('2')">2</button>
+            <button onclick="appendValue('3')">3</button>
+            <button class="equal" onclick="calculateResult()">=</button>
+            <button onclick="appendValue('0')" class="zero">0</button>
+            <button onclick="appendValue('.')">.</button>
+        </div>
+    </div>
+
+    <script>
+        function appendValue(value) {
+            document.getElementById('display').value += value;
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        function calculateResult() {
+            try {
+                document.getElementById('display').value = eval(document.getElementById('display').value);
+            } catch {
+                document.getElementById('display').value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
