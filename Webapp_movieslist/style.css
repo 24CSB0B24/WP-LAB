@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url("https://img.freepik.com/free-photo/movie-background-collage_23-2149876003.jpg");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .container {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.404);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.541);
+    width: 400px;
+  }
+  
+  input {
+    padding: 10px;
+    width: 90%;
+    margin-right: 10px;
+    margin-left: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  button {
+    padding: 10px 60px;
+    width: 70%;
+    margin-top: 20px;
+    border: none;
+    background-color: #fc6006;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+  button:hover {
+    background-color: #fc9a06;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  li:hover {
+    background-color: #e4e4e4;
+  }
+  
+  #movieCount {
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+  
