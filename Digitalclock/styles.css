@@ -1,0 +1,109 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #141E30, #243B55);
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+h1, h2 {
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.clock {
+    font-size: 2.5em;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.2);
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+input {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    margin: 5px;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    margin: 5px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    background: #00C9FF;
+    color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background: #00A7D4;
+    transform: scale(1.05);
+}
+
+select {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    cursor: pointer;
+    background: white;
+    color: black;
+}
+
+#stopwatch, #countdownDisplay {
+    font-size: 2em;
+    margin: 15px 0;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    display: inline-block;
+    font-weight: bold;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.alarm-ring {
+    animation: shake 0.5s infinite;
+    color: red;
+}
+
+.light-theme {
+    background: #f5f5f5;
+    color: black;
+}
+
+.dark-theme {
+    background: #222;
+    color: white;
+}
+
+.neon-theme {
+    background: black;
+    color: lime;
+    text-shadow: 0 0 5px lime, 0 0 10px lime;
+}

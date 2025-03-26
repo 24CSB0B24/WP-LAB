@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock with Features</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Digital Clock</h1>
+        <div class="clock">
+            <span id="time"></span>
+            <span id="date"></span>
+        </div>
+
+        <h2>Set Alarm</h2>
+        <input type="time" id="alarmTime">
+        <button onclick="setAlarm()">Set Alarm</button>
+        <button onclick="clearAlarm()">Clear Alarm</button>
+        <p id="alarmStatus"></p>
+
+        <h2>Stopwatch</h2>
+        <div id="stopwatch">00:00:00</div>
+        <button onclick="startStopwatch()">Start</button>
+        <button onclick="pauseStopwatch()">Pause</button>
+        <button onclick="resetStopwatch()">Reset</button>
+
+        <h2>Countdown Timer</h2>
+        <input type="number" id="countdownMinutes" placeholder="Minutes">
+        <input type="number" id="countdownSeconds" placeholder="Seconds">
+        <button onclick="startCountdown()">Start</button>
+        <button onclick="resetCountdown()">Reset</button>
+        <div id="countdownDisplay"></div>
+
+        <h2>Theme Selector</h2>
+        <select id="themeSelector" onchange="changeTheme()">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+            <option value="neon">Neon</option>
+        </select>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
