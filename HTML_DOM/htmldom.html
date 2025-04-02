@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Features</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            transition: background 0.3s, color 0.3s;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+        button {
+            background: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .dark-mode {
+            background-color: #222;
+            color: white;
+        }
+        #display {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        #list {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+        #list li {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Image Gallery Modal */
+        #modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+        }
+        #modal img {
+            max-width: 400px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Theme Toggle</h2>
+        <button id="theme-toggle">Toggle Theme</button>
+    </div>
+
+    <div class="container">
+        <h2>Countdown Timer</h2>
+        <input type="number" id="timeInput" placeholder="Enter seconds">
+        <button onclick="startTimer()">Start</button>
+        <button onclick="pauseTimer()">Pause</button>
+        <button onclick="resumeTimer()">Resume</button>
+        <button onclick="resetTimer()">Reset</button>
+        <p id="display"></p>
+    </div>
+
+    <div class="container">
+        <h2>Sort & Filter List</h2>
+        <ul id="list">
+            <li>Apple</li>
+            <li>Banana</li>
+            <li>Apple</li>
+            <li>Cherry</li>
+        </ul>
+        <button onclick="sortList()">Sort</button>
+        <button onclick="removeDuplicates()">Remove Duplicates</button>
+        <button onclick="reverseList()">Reverse</button>
+    </div>
+
+    <div class="container">
+        <h2>Dynamic Table</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="dataTable"></tbody>
+        </table>
+        <input type="text" id="nameInput" placeholder="Enter Name">
+        <button onclick="addRow()">Add Row</button>
+    </div>
+
+    <div class="container">
+        <h2>Interactive Image Gallery</h2>
+        <img src="small.jpg" onclick="openImage('large.jpg')" style="width:100px;cursor:pointer;border-radius:5px;">
+    </div>
+    <div id="modal">
+        <img id="largeImg">
+        <br>
+        <button onclick="closeImage()">Close</button>
+    </div>
+    <script>
+        const button = document.getElementById("theme-toggle");
+        const body = document.body;
+        if (localStorage.getItem("theme") === "dark") {
+            body.classList.add("dark-mode");
+        }
+        button.addEventListener("click", () => {
+            body.classList.toggle("dark-mode");
+            localStorage.setItem("theme", body.classList.contains("dark-mode") ? "dark" : "light");
+        });
+        let countdown, timeLeft;
+        const display = document.getElementById("display");
+        function startTimer() {
+            timeLeft = parseInt(document.getElementById("timeInput").value);
+            updateDisplay();
+            countdown = setInterval(() => {
+                timeLeft--;
+                updateDisplay();
+                if (timeLeft <= 0) clearInterval(countdown);
+            }, 1000);
+        }
+        function pauseTimer() {
+            clearInterval(countdown);
+        }
+        function resumeTimer() {
+            startTimer();
+        }
+        function resetTimer() {
+            clearInterval(countdown);
+            display.innerText = "";
+            document.body.style.backgroundColor = "white";
+        }
+        function updateDisplay() {
+            display.innerText = timeLeft + " seconds";
+            document.body.style.backgroundColor = timeLeft > 10 ? "green" : timeLeft > 5 ? "yellow" : "red";
+        }
+        function sortList() {
+            let list = [...document.querySelectorAll("#list li")].map(li => li.innerText).sort();
+            updateList(list);
+        }
+        function removeDuplicates() {
+            let list = [...new Set([...document.querySelectorAll("#list li")].map(li => li.innerText))];
+            updateList(list);
+        }
+        function reverseList() {
+            let list = [...document.querySelectorAll("#list li")].map(li => li.innerText).reverse();
+            updateList(list);
+        }
+        function updateList(items) {
+            document.getElementById("list").innerHTML = items.map(item => `<li>${item}</li>`).join("");
+        }
+        function addRow() {
+            let table = document.getElementById("dataTable");
+            let name = document.getElementById("nameInput").value;
+            if (!name) return;
+            let row = table.insertRow();
+            let cell1 = row.insertCell(0);
+            let cell2 = row.insertCell(1);
+            cell1.innerText = name;
+            cell2.innerHTML = '<button onclick="deleteRow(this)">Delete</button>';
+        }
+        function deleteRow(btn) {
+            btn.parentElement.parentElement.remove();
+        }
+        function openImage(src) {
+            document.getElementById("largeImg").src = src;
+            document.getElementById("modal").style.display = "block";
+        }
+        function closeImage() {
+            document.getElementById("modal").style.display = "none";
+        }
+    </script>
+</body>
+</html>
